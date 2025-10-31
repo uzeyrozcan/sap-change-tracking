@@ -1,0 +1,193 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "changelog",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.19.3",
+      "toolsId": "c51d49b5-988a-477e-ab87-2a4e13eeaa73"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/service/FiorielementsService/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.142.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "changelog.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {
+        "flexibleColumnLayout": {
+          "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+        },
+        "routerClass": "sap.f.routing.Router"
+      },
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "ChangeLogList",
+          "target": [
+            "ChangeLogList"
+          ]
+        },
+        {
+          "pattern": "ChangeLog({key}):?query:",
+          "name": "ChangeLogObjectPage",
+          "target": [
+            "ChangeLogList",
+            "ChangeLogObjectPage"
+          ]
+        },
+        {
+          "pattern": "ChangeLog({key})/changes({key2}):?query:",
+          "name": "ChangeLogChangesObjectPage",
+          "target": [
+            "ChangeLogList",
+            "ChangeLogObjectPage",
+            "ChangeLogChangesObjectPage"
+          ]
+        }
+      ],
+      "targets": {
+        "ChangeLogList": {
+          "type": "Component",
+          "id": "ChangeLogList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/ChangeLog",
+              "variantManagement": "Page",
+              "navigation": {
+                "ChangeLog": {
+                  "detail": {
+                    "route": "ChangeLogObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          },
+          "controlAggregation": "beginColumnPages",
+          "contextPattern": ""
+        },
+        "ChangeLogObjectPage": {
+          "type": "Component",
+          "id": "ChangeLogObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/ChangeLog",
+              "navigation": {
+                "changes": {
+                  "detail": {
+                    "route": "ChangeLogChangesObjectPage"
+                  }
+                }
+              },
+              "sectionLayout": "Page"
+            }
+          },
+          "controlAggregation": "midColumnPages",
+          "contextPattern": "/ChangeLog({key})"
+        },
+        "ChangeLogChangesObjectPage": {
+          "type": "Component",
+          "id": "ChangeLogChangesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/ChangeLog/changes"
+            }
+          },
+          "controlAggregation": "endColumnPages",
+          "contextPattern": "/ChangeLog({key})/changes({key2})"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+      "type": "XML",
+      "async": true,
+      "id": "appRootView"
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

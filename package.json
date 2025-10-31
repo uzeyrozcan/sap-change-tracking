@@ -1,0 +1,33 @@
+{
+  "name": "Fiorielements",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/change-tracking": "^1.1.3",
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9.4.4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project": "cds watch --open project/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-changelog": "cds watch --open changelog/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "features": {
+      "changelog": true
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project",
+    "app/changelog"
+  ]
+}
