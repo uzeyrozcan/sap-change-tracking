@@ -1,11 +1,51 @@
-ID;prodName;prodNumber
-11111111-1111-1111-1111-111111111111;Laptop X200;LX200-15
-22222222-2222-2222-2222-222222222222;Kablosuz Mouse M10;KM10-08
-33333333-3333-3333-3333-333333333333;Gaming Klavye K5;GK5-22
-44444444-4444-4444-4444-444444444444;27" Monitör UltraView;MU27-03
-55555555-5555-5555-5555-555555555555;Bluetooth Kulaklık B20;BK20-11
-66666666-6666-6666-6666-666666666666;Web Kamera HD500;WC500-07
-77777777-7777-7777-7777-777777777777;Mekanik Klavye Pro;MKP-17
-88888888-8888-8888-8888-888888888888;Taşınabilir SSD 1TB;SSD1T-09
-99999999-9999-9999-9999-999999999999;Grafik Tablet G3;GTG3-12
-10101010-1010-1010-1010-101010101010;Ofis Yazıcı L400;OYL400-04
+ID;prodNumber;prodName;prodManager;prodType;prodStatus;industry;lineOfBusiness;legalOwner
+3b2b1666-3211-4252-8758-000000000006;1010;Digital Payment Hub;Anna Schneider;PR;Released;Finance;Payments;ABC Corp
+3b2b1666-3211-4252-8758-000000000007;1011;Smart Warehouse Control;Lukas Braun;IN;Developing;Logistics;Supply Chain;LogiCorp
+3b2b1666-3211-4252-8758-000000000008;1012;Fleet Tracking System;Maria Weiss;PR;Released;Automotive;Fleet;RoadTech
+3b2b1666-3211-4252-8758-000000000009;1013;Lead Intelligence Suite;David Keller;IN;Released;Marketing;Sales;ABC Corp
+3b2b1666-3211-4252-8758-000000000010;1014;Production Line Analyzer;Stefan Hoffmann;PR;Developing;Manufacturing;Operations;Test Owner
+3b2b1666-3211-4252-8758-000000000011;1015;Event Ticket Processor;Markus Kellermeyer;PR;Released;Entertainment;Events;ABC Corp
+3b2b1666-3211-4252-8758-000000000012;1016;Warranty Claim Monitor;Sophie Hartmann;IN;Developing;Automotive;After Sales;Test Owner
+3b2b1666-3211-4252-8758-000000000013;1017;Cargo Pricing Engine;Dean Rempel;PR;Released;Logistics;Freight;FreightCo
+3b2b1666-3211-4252-8758-000000000014;1018;Retail Promotion Planner;Anna Schneider;IN;Released;Retail;Sales;ABC Corp
+3b2b1666-3211-4252-8758-000000000015;1019;Energy Usage Dashboard;Lukas Braun;PR;Developing;Energy;Monitoring;EcoTech
+3b2b1666-3211-4252-8758-000000000016;1020;Hospital Patient Flow;Maria Weiss;PR;Released;Healthcare;Operations;HealthCorp
+3b2b1666-3211-4252-8758-000000000017;1021;Bank Risk Evaluator;Stefan Hoffmann;IN;Released;Finance;Risk;Test Owner
+3b2b1666-3211-4252-8758-000000000018;1022;Document Lifecycle Suite;David Keller;PR;Developing;Legal;Compliance;ABC Corp
+3b2b1666-3211-4252-8758-000000000019;1023;Customer Billing Portal;Markus Kellermeyer;PR;Released;Finance;Billing;Test Owner
+3b2b1666-3211-4252-8758-000000000020;1024;HR Talent Matcher;Sophie Hartmann;IN;Developing;Human Resources;Recruiting;PeopleCorp
+3b2b1666-3211-4252-8758-000000000021;1025;Crop Yield Optimizer;Dean Rempel;PR;Released;Agriculture;Analytics;AgriTech
+3b2b1666-3211-4252-8758-000000000022;1026;IoT Device Network;Anna Schneider;PR;Developing;Technology;IoT;ABC Corp
+3b2b1666-3211-4252-8758-000000000023;1027;Warehouse Drone Manager;Lukas Braun;IN;Released;Logistics;Automation;LogiCorp
+3b2b1666-3211-4252-8758-000000000024;1028;Port Terminal Planner;Maria Weiss;PR;Released;Maritime;Operations;SeaportCo
+3b2b1666-3211-4252-8758-000000000025;1029;Travel Expense Auditor;Stefan Hoffmann;IN;Developing;Finance;Expenses;Test Owner
+3b2b1666-3211-4252-8758-000000000026;1030;Insurance Claim Validator;David Keller;PR;Released;Insurance;Claims;SecureInsure
+3b2b1666-3211-4252-8758-000000000027;1031;Sustainability Carbon Tracker;Markus Kellermeyer;PR;Developing;Energy;Sustainability;EcoTech
+3b2b1666-3211-4252-8758-000000000028;1032;Food Supply Monitor;Sophie Hartmann;IN;Released;Agriculture;Logistics;AgriTech
+3b2b1666-3211-4252-8758-000000000029;1033;E-Commerce Pricing Tool;Dean Rempel;PR;Released;Retail;E-Commerce;Test Owner
+3b2b1666-3211-4252-8758-000000000030;1034;Air Cargo Optimizer;Anna Schneider;IN;Developing;Aviation;Freight;AirFlow
+3b2b1666-3211-4252-8758-000000000031;1035;Smart Meter Analyzer;Lukas Braun;PR;Released;Energy;Grid;ABC Corp
+3b2b1666-3211-4252-8758-000000000032;1036;Pharma Batch Tracker;Maria Weiss;IN;Developing;Pharma;Manufacturing;MedTech
+3b2b1666-3211-4252-8758-000000000033;1037;Loan Decision Engine;Stefan Hoffmann;PR;Released;Finance;Lending;Test Owner
+3b2b1666-3211-4252-8758-000000000034;1038;Urban Traffic Controller;David Keller;IN;Released;Government;Transport;CityGov
+3b2b1666-3211-4252-8758-000000000035;1039;Product Design Hub;Markus Kellermeyer;PR;Developing;Manufacturing;R&D;Test Owner
+3b2b1666-3211-4252-8758-000000000036;1040;Fraud Pattern Detector;Sophie Hartmann;PR;Released;Finance;Security;SecureTech
+3b2b1666-3211-4252-8758-000000000037;1041;Asset Lifecycle Viewer;Dean Rempel;IN;Developing;Real Estate;Management;EstateCorp
+3b2b1666-3211-4252-8758-000000000038;1042;Digital Farming Console;Anna Schneider;PR;Released;Agriculture;IoT;AgriTech
+3b2b1666-3211-4252-8758-000000000039;1043;Mining Fleet Supervisor;Lukas Braun;IN;Developing;Mining;Operations;MineCo
+3b2b1666-3211-4252-8758-000000000040;1044;Rail Maintenance Planner;Maria Weiss;PR;Released;Transportation;Rail;RailNet
+3b2b1666-3211-4252-8758-000000000041;1045;Supplier Scorecard Engine;Stefan Hoffmann;IN;Developing;Procurement;Supplier Mgmt;ABC Corp
+3b2b1666-3211-4252-8758-000000000042;1046;Mobile Workforce Scheduler;David Keller;PR;Released;Field Service;Operations;Test Owner
+3b2b1666-3211-4252-8758-000000000043;1047;City Energy Grid Monitor;Markus Kellermeyer;PR;Developing;Energy;Infrastructure;EcoCity
+3b2b1666-3211-4252-8758-000000000044;1048;Manufacturing Scrap Tracker;Sophie Hartmann;IN;Released;Manufacturing;Quality;ABC Corp
+3b2b1666-3211-4252-8758-000000000045;1049;Retail Store Optimizer;Dean Rempel;PR;Released;Retail;Operations;RetailPro
+3b2b1666-3211-4252-8758-000000000046;1050;Road Safety Analyzer;Anna Schneider;PR;Developing;Government;Transport;CityGov
+3b2b1666-3211-4252-8758-000000000047;1051;Cargo Invoice Reconciler;Lukas Braun;IN;Released;Logistics;Billing;FreightCo
+3b2b1666-3211-4252-8758-000000000048;1052;Telecom Outage Monitor;Maria Weiss;PR;Released;Telecom;Network;TeleComX
+3b2b1666-3211-4252-8758-000000000049;1053;Climate Risk Analyzer;Stefan Hoffmann;IN;Developing;Energy;Risk;EcoTech
+3b2b1666-3211-4252-8758-000000000050;1054;Factory Robotics Loader;David Keller;PR;Released;Manufacturing;Automation;RoboWorks
+3b2b1666-3211-4252-8758-000000000051;1055;Smart School Attendance;Markus Kellermeyer;IN;Developing;Education;Administration;EduCorp
+3b2b1666-3211-4252-8758-000000000052;1056;Real-Time Shipment Tracker;Sophie Hartmann;PR;Released;Logistics;Tracking;LogiTrack
+3b2b1666-3211-4252-8758-000000000053;1057;Oil Rig Monitoring Suite;Dean Rempel;IN;Developing;Energy;Drilling;PetroWorks
+3b2b1666-3211-4252-8758-000000000054;1058;Clinical Trial Manager;Anna Schneider;PR;Released;Healthcare;Research;HealthCorp
+3b2b1666-3211-4252-8758-000000000055;1059;Smart Parking Control;Lukas Braun;IN;Released;Smart City;Traffic;CityGov

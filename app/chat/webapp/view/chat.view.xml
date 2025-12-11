@@ -1,0 +1,68 @@
+<mvc:View
+  controllerName="chat.controller.chat"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout">
+
+  <!-- Dış “shell” -->
+  <VBox class="chatShell" fitContainer="true">
+
+    <HBox fitContainer="true">
+
+      <!-- LEFT: Navigation -->
+      <VBox class="sideNav" width="18rem">
+        <Text text="SAP Fiori" class="sideHeader"/>
+        <List class="sideList" inset="false" mode="None">
+          <StandardListItem icon="sap-icon://activity-individual" title="Sipariş Durumu" selected="true"/>
+          <StandardListItem icon="sap-icon://person-placeholder" title="User"/>
+          <StandardListItem icon="sap-icon://document-text" title="Fatura Sorgulama"/>
+          <StandardListItem icon="sap-icon://bell" title="Hatırlatma"/>
+        </List>
+        <Button text="New Sohbet Başlat" type="Emphasized" class="newChatBtn" icon="sap-icon://add" press=".onNewChat"/>
+      </VBox>
+
+      <!-- RIGHT: Chat Column -->
+      <VBox class="chatArea" width="100%">
+
+        <!-- Title -->
+        <Text text="Order Status Inquiry" class="chatTitle"/>
+
+        <!-- Messages -->
+        <List id="chatList" class="chatList" items="{/messages}">
+          <items>
+            <CustomListItem>
+              <HBox
+                class="fadeIn"
+                width="100%"
+                alignItems="Start"
+                justifyContent="{= ${from} === 'user' ? 'End' : 'Start' }">
+
+                <HBox width="100%" justifyContent="{= ${from} === 'user' ? 'End' : 'Start' }">
+                  <VBox>
+                    <Text
+                      text="{= ${from} === 'user' ? 'User' : 'SAP Assistant' }"
+                      design="Bold"
+                      class="sapUiTinyMarginBottom"/>
+                    <Text
+                      text="{message}"
+                      class="bubble {= ${from} === 'user' ? 'bubbleUser' : 'bubbleBot' }"/>
+                  </VBox>
+                </HBox>
+
+              </HBox>
+            </CustomListItem>
+          </items>
+        </List>
+
+        <!-- Footer Input Bar -->
+        <Toolbar class="inputBar" design="Auto">
+          <Button icon="sap-icon://microphone" tooltip="Sesle yaz" type="Transparent"/>
+          <ToolbarSpacer/>
+          <Input id="inputMsg" width="70%" placeholder="Mesajınızı yazın..." class="inputField" submit=".onSend"/>
+          <Button text="" icon="sap-icon://navigation-right-arrow" type="Emphasized" class="sendBtn" press=".onSend"/>
+        </Toolbar>
+
+      </VBox>
+    </HBox>
+  </VBox>
+</mvc:View>

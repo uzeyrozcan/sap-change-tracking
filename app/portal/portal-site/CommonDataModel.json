@@ -1,0 +1,111 @@
+{
+  "_version": "3.0.0",
+  "identification": {
+    "title": "Fiorielements",
+    "id": "Fiorielements-flp",
+    "entityType": "bundle"
+  },
+  "payload": {
+    "catalogs": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "Fiorielements-catalog",
+          "title": "{{title}}",
+          "entityType": "catalog",
+          "i18n": "i18n/catalog.properties"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "changelog",
+              "vizId": "Books-display"
+            },
+            {
+              "appId": "chat",
+              "vizId": "Books-display"
+            },
+            {
+              "appId": "products",
+              "vizId": "Books-display"
+            }
+          ]
+        }
+      }
+    ],
+    "groups": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "Fiorielements-group",
+          "title": "{{title}}",
+          "entityType": "group",
+          "i18n": "i18n/group.properties"
+        },
+        "payload": {
+          "viz": [
+            {
+              "id": "Fiorielementschangelog-001",
+              "appId": "changelog",
+              "vizId": "Books-display"
+            },
+            {
+              "id": "Fiorielementschat-001",
+              "appId": "chat",
+              "vizId": "Books-display"
+            },
+            {
+              "id": "Fiorielementsproducts-001",
+              "appId": "products",
+              "vizId": "Books-display"
+            }
+          ]
+        }
+      }
+    ],
+    "sites": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "Fiorielements-site",
+          "entityType": "site",
+          "title": "Fiorielements",
+          "description": "A simple CAP project."
+        },
+        "payload": {
+          "config": {
+            "ushellConfig": {
+              "renderers": {
+                "fiori2": {
+                  "componentData": {
+                    "config": {
+                      "applications": {
+                        "Shell-home": {}
+                      },
+                      "enableSearch": true,
+                      "enablePersonalization": true,
+                      "enableSetTheme": true,
+                      "enableSetLanguage": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "groupsOrder": ["Fiorielements-group"],
+          "sap.cloud.portal": {
+            "config": {
+              "theme.id": "sap_horizon",
+              "theme.active": [
+                "sap_horizon",
+                "sap_horizon_dark",
+                "sap_horizon_hcw",
+                "sap_horizon_hcb"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

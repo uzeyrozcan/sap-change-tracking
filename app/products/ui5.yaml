@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
 
-specVersion: "3.1"
+specVersion: "4.0"
 metadata:
-  name: changelog
+  name: products
 type: application
 server:
   customMiddleware:
@@ -15,7 +15,6 @@ server:
             - /resources
             - /test-resources
           url: https://sapui5.hana.ondemand.com
-
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -27,3 +26,19 @@ server:
       configuration:
         flp:
           theme: sap_horizon
+    - name: ui5-tooling-transpile-middleware
+      afterMiddleware: compression
+      configuration:
+        debug: true
+        transformModulesToUI5:
+          overridesToOverride: true
+        excludePatterns:
+          - /Component-preload.js
+builder:
+  customTasks:
+    - name: ui5-tooling-transpile-task
+      afterTask: replaceVersion
+      configuration:
+        debug: true
+        transformModulesToUI5:
+          overridesToOverride: true

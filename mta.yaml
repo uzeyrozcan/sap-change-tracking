@@ -1,0 +1,296 @@
+_schema-version: 3.3.0
+ID: Fiorielements
+description: 'Recruiting in the digital age: Simplify and accelerate with HR Rapid
+  Apply Simplified.'
+version: 1.0.0
+modules:
+- name: Fiorielements-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: Fiorielements-auth
+  - name: Fiorielements-connectivity
+  - name: Fiorielements-service-manager
+  - name: Fiorielements-destination
+  - name: Fiorielements-theming
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-quota: 256M
+    memory: 64M
+    no-route: true
+  build-parameters:
+    builder: npm-ci
+- name: Fiorielements
+  type: approuter.nodejs
+  path: app/router
+  properties:
+    TENANT_HOST_PATTERN: ^(.*)-${default-uri}
+  requires:
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      timeout: 300000
+      url: ~{srv-url}
+  - name: Fiorielements-auth
+  - name: Fiorielements-html5-runtime
+  - name: Fiorielements-app-content
+  - name: Fiorielements-destination
+    group: destinations
+    properties:
+      forwardAuthToken: false
+      name: ui5
+      url: https://ui5.sap.com
+  - name: Fiorielements-theming
+  - name: mtx-api
+    group: destinations
+    properties:
+      name: mtx-api
+      url: ~{mtx-url}
+  provides:
+  - name: app-api
+    properties:
+      app-protocol: ${protocol}
+      app-uri: ${default-uri}
+  parameters:
+    disk-quota: 128M
+    keep-existing-routes: true
+    memory: 64M
+  build-parameters:
+    builder: custom
+    commands: []
+    ignore:
+    - .DS_Store
+    - node_modules/
+- name: Fiorielements-destinations
+  type: com.sap.application.content
+  requires:
+  - name: Fiorielements-auth
+    parameters:
+      service-key:
+        name: Fiorielements-auth-key
+  - name: Fiorielements-html5-repo-host
+    parameters:
+      service-key:
+        name: Fiorielements-html5-repo-host-key
+  - name: srv-api
+  - name: Fiorielements-destination
+    parameters:
+      content-target: true
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Authentication: OAuth2UserTokenExchange
+          Name: Fiorielements-app-srv
+          TokenServiceInstanceName: Fiorielements-auth
+          TokenServiceKeyName: Fiorielements-auth-key
+          URL: ~{srv-api/srv-url}
+          sap.cloud.service: Fiorielements.service
+        - Name: Fiorielements-html5-repo-host
+          ServiceInstanceName: Fiorielements-html5-repo-host
+          ServiceKeyName: Fiorielements-html5-repo-host-key
+          sap.cloud.service: Fiorielements.service
+        - Authentication: OAuth2UserTokenExchange
+          Name: Fiorielements-auth
+          ServiceInstanceName: Fiorielements-auth
+          ServiceKeyName: Fiorielements-auth-key
+          sap.cloud.service: Fiorielements.service
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: Fiorielements-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Fiorielements-html5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - changelog.zip
+      name: changelog
+      target-path: resources/
+    - artifacts:
+      - chat.zip
+      name: chat
+      target-path: resources/
+    - artifacts:
+      - products.zip
+      name: products
+      target-path: resources/
+- name: changelog
+  type: html5
+  path: app/changelog
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build
+    supported-platforms: []
+- name: chat
+  type: html5
+  path: app/chat
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build
+    supported-platforms: []
+
+- name: products
+  type: html5
+  path: app/products
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build
+    supported-platforms: []
+- name: Fiorielements-app-deployer
+  type: com.sap.application.content
+  path: gen
+  requires:
+  - name: Fiorielements-html5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: app/
+    requires:
+    - artifacts:
+      - changelog.zip
+      name: changelog
+      target-path: app/
+    - artifacts:
+      - chat.zip
+      name: chat
+      target-path: app/
+    - artifacts:
+      - products.zip
+      name: products
+      target-path: app/
+
+- name: Fiorielements-mtx
+  type: nodejs
+  path: gen/mtx/sidecar
+  requires:
+  - name: Fiorielements-registry
+  - name: Fiorielements-connectivity
+  - name: app-api
+    properties:
+      SUBSCRIPTION_URL: ~{app-protocol}://\${tenant_subdomain}-~{app-uri}
+  - name: Fiorielements-destination
+  - name: Fiorielements-service-manager
+  - name: Fiorielements-html5-runtime
+  - name: Fiorielements-auth
+  - name: Fiorielements-theming
+  provides:
+  - name: mtx-api
+    properties:
+      mtx-url: ${default-url}
+  parameters:
+    disk-quota: 256M
+    instances: 1
+    memory: 64M
+    no-route: true
+  build-parameters:
+    builder: npm-ci
+resources:
+- name: Fiorielements-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: shared
+      xsappname: Fiorielements-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: Fiorielements-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+  requires:
+  - name: srv-api
+- name: Fiorielements-html5-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: Fiorielements-theming
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: theming
+    service-plan: standard
+- name: Fiorielements-service-manager
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: service-manager
+    service-plan: container
+- name: Fiorielements-connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: Fiorielements-html5-runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: Fiorielements-registry
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      appName: Fiorielements-${org}-${space}
+      appUrls:
+        callbackTimeoutMillis: 300000
+        getDependencies: ~{mtx-api/mtx-url}/-/cds/saas-provisioning/dependencies
+        onSubscription: ~{mtx-api/mtx-url}/-/cds/saas-provisioning/tenant/{tenantId}
+        onSubscriptionAsync: true
+        onUnSubscriptionAsync: true
+        onUpdateDependenciesAsync: true
+      category: Category
+      description: Fiorielements
+      displayName: Fiorielements
+      xsappname: Fiorielements-${org}-${space}
+    service: saas-registry
+    service-plan: application
+  requires:
+  - name: mtx-api
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
+    - cds build --production

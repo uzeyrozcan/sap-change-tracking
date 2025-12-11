@@ -1,7 +1,7 @@
 {
   "_version": "1.76.0",
   "sap.app": {
-    "id": "changelog",
+    "id": "products",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.19.3",
-      "toolsId": "c51d49b5-988a-477e-ab87-2a4e13eeaa73"
+      "version": "1.20.0",
+      "toolsId": "fd2df87a-09eb-476d-b5aa-2a6d571bf9fd"
     },
     "dataSources": {
       "mainService": {
@@ -27,12 +27,12 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "ChangeLog-monitor": {
-          "semanticObject": "ChangeLog",
-          "action": "monitor",
-          "title": "Değişiklik Geçmişi",
-          "subTitle": "Log Kayıtları",
-          "icon": "sap-icon://history",
+        "Fiorielements-display": {
+          "semanticObject": "Products",
+          "action": "manage",
+          "title": "{{appTitle}}",
+          "subTitle": "Ürünleri Listele ve Düzenle",
+          "icon": "sap-icon://product",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -60,7 +60,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.142.0",
+      "minUI5Version": "1.143.0",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -76,7 +76,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "changelog.i18n.i18n"
+          "bundleName": "products.i18n.i18n"
         }
       },
       "": {
@@ -107,42 +107,33 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "ChangeLogList",
+          "name": "ProductsList",
           "target": [
-            "ChangeLogList"
+            "ProductsList"
           ]
         },
         {
-          "pattern": "ChangeLog({key}):?query:",
-          "name": "ChangeLogObjectPage",
+          "pattern": "Products({key}):?query:",
+          "name": "ProductsObjectPage",
           "target": [
-            "ChangeLogList",
-            "ChangeLogObjectPage"
-          ]
-        },
-        {
-          "pattern": "ChangeLog({key})/changes({key2}):?query:",
-          "name": "ChangeLogChangesObjectPage",
-          "target": [
-            "ChangeLogList",
-            "ChangeLogObjectPage",
-            "ChangeLogChangesObjectPage"
+            "ProductsList",
+            "ProductsObjectPage"
           ]
         }
       ],
       "targets": {
-        "ChangeLogList": {
+        "ProductsList": {
           "type": "Component",
-          "id": "ChangeLogList",
+          "id": "ProductsList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/ChangeLog",
+              "contextPath": "/Products",
               "variantManagement": "Page",
               "navigation": {
-                "ChangeLog": {
+                "Products": {
                   "detail": {
-                    "route": "ChangeLogObjectPage"
+                    "route": "ProductsObjectPage"
                   }
                 }
               },
@@ -158,39 +149,18 @@
           "controlAggregation": "beginColumnPages",
           "contextPattern": ""
         },
-        "ChangeLogObjectPage": {
+        "ProductsObjectPage": {
           "type": "Component",
-          "id": "ChangeLogObjectPage",
+          "id": "ProductsObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/ChangeLog",
-              "navigation": {
-                "changes": {
-                  "detail": {
-                    "route": "ChangeLogChangesObjectPage"
-                  }
-                }
-              },
-              "sectionLayout": "Page"
+              "contextPath": "/Products"
             }
           },
           "controlAggregation": "midColumnPages",
-          "contextPattern": "/ChangeLog({key})"
-        },
-        "ChangeLogChangesObjectPage": {
-          "type": "Component",
-          "id": "ChangeLogChangesObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/ChangeLog/changes"
-            }
-          },
-          "controlAggregation": "endColumnPages",
-          "contextPattern": "/ChangeLog({key})/changes({key2})"
+          "contextPattern": "/Products({key})"
         }
       }
     },
