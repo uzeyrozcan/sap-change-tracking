@@ -2,11 +2,15 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fiori Launchpad - Yerel Test</title>
+    <title>Fiorielements Launchpad</title>
 
-    <script>
+    <script id="sap-ui-shellhome">
+        window.location.href = window.location.href.indexOf('#') === -1 ? window.location.href + '#Shell-home' : window.location.href;
+    </script>
+
+    <script id="sap-ui-flpconfig">
         window["sap-ushell-config"] = {
             defaultRenderer: "fiori2",
             renderers: {
@@ -14,7 +18,8 @@
                     componentData: {
                         config: {
                             search: "hidden",
-                            enableSearch: false
+                            enableSearch: false,
+                            enablePersonalization: false // Önbellek sorununu çözen ayar
                         }
                     }
                 }
@@ -23,68 +28,125 @@
                 LaunchPage: {
                     adapter: {
                         config: {
-                            groups: [{
-                                id: "mygroup",
-                                title: "Uygulamalarım",
-                                isPreset: true,
-                                isVisible: true,
-                                tiles: [
-                                    {
-                                        id: "productstile",
-                                        title: "Ürün Yönetimi",
-                                        subtitle: "Fiori Elements",
-                                        icon: "sap-icon://product",
-                                        target: { semanticObject: "Products", action: "manage" }
-                                    },
-                                    {
-                                        id: "changelogtile",
-                                        title: "Değişiklik Geçmişi",
-                                        subtitle: "Log Kayıtları",
-                                        icon: "sap-icon://history",
-                                        target: { semanticObject: "ChangeLog", action: "monitor" }
+                            catalogs: [],
+                            groups: [
+                                {
+                                    id: "MyHome",
+                                    title: "Ana Sayfam",
+                                    isVisible: true,
+                                    tiles: [
+                                        // 1. KUTUCUK: Ürünler
+                                        {
+                                            id: "ManageProducts",
+                                            tileType: "sap.ushell.ui.tile.StaticTile",
+                                            properties: {
+                                                title: "Ürün Yönetimi",
+                                                subtitle: "Listele & Düzenle",
+                                                targetURL: "#Products-manage", // Aşağıdaki inbound ile eşleşir
+                                                icon: "sap-icon://product"
+                                            }
+                                        },
+                                        // 2. KUTUCUK: Change Log
+                                        {
+                                            id: "MonitorChangeLog",
+                                            tileType: "sap.ushell.ui.tile.StaticTile",
+                                            properties: {
+                                                title: "Değişiklik Geçmişi",
+                                                subtitle: "Log Kayıtları",
+                                                targetURL: "#ChangeLog-monitor", // Aşağıdaki inbound ile eşleşir
+                                                icon: "sap-icon://history"
+                                            }
+                                        },
+                                        // 3. KUTUCUK: AI Chat
+                                        {
+                                            id: "ChatApp",
+                                            tileType: "sap.ushell.ui.tile.StaticTile",
+                                            properties: {
+                                                title: "AI Chat Asistanı",
+                                                subtitle: "Sohbet & Destek",
+                                                targetURL: "#Chat-display", // Aşağıdaki inbound ile eşleşir
+                                                icon: "sap-icon://discussion"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                // Modern Navigasyon Ayarı
+                ClientSideTargetResolution: {
+                    adapter: {
+                        config: {
+                            inbounds: {
+                                "ManageProducts": {
+                                    semanticObject: "Products",
+                                    action: "manage",
+                                    title: "Ürün Yönetimi",
+                                    signature: { parameters: {}, additionalParameters: "allowed" },
+                                    resolutionResult: {
+                                        applicationType: "SAPUI5",
+                                        additionalInformation: "SAPUI5.Component=products",
+                                        url: "./products"
                                     }
-                                ]
-                            }]
+                                },
+                                "MonitorChangeLog": {
+                                    semanticObject: "ChangeLog",
+                                    action: "monitor",
+                                    title: "Değişiklik Geçmişi",
+                                    signature: { parameters: {}, additionalParameters: "allowed" },
+                                    resolutionResult: {
+                                        applicationType: "SAPUI5",
+                                        additionalInformation: "SAPUI5.Component=changelog",
+                                        url: "./changelog"
+                                    }
+                                },
+                                "ChatDisplay": {
+                                    semanticObject: "Chat",
+                                    action: "display",
+                                    title: "AI Chat",
+                                    signature: { parameters: {}, additionalParameters: "allowed" },
+                                    resolutionResult: {
+                                        applicationType: "SAPUI5",
+                                        additionalInformation: "SAPUI5.Component=chat",
+                                        url: "./chat"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
                 NavTargetResolution: {
-                    adapter: {
-                        config: {
-                            applications: {
-                                "Products-manage": {
-                                    additionalInformation: "SAPUI5.Component=products",
-                                    applicationType: "URL",
-                                    url: "./products/webapp", 
-                                    description: "Ürünleri Yönet"
-                                },
-                                "ChangeLog-monitor": {
-                                    additionalInformation: "SAPUI5.Component=changelog",
-                                    applicationType: "URL",
-                                    url: "./changelog/webapp",
-                                    description: "Logları İzle"
-                                }
-                            }
-                        }
+                    config: {
+                        enableClientSideTargetResolution: true
                     }
                 }
             }
         };
     </script>
 
-    <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
-    <script src="https://ui5.sap.com/resources/sap-ui-core.js"
-        data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration, sap.ui.layout"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-theme="sap_horizon"
-        data-sap-ui-frameOptions="allow">
+    <script id="sap-ui-bootstrap" 
+        src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-libs="sap.m, sap.ushell, sap.ui.layout, sap.ui.core, sap.fe.core, sap.fe.templates"
+        data-sap-ui-theme="sap_horizon" 
+        data-sap-ui-compatVersion="edge" 
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted" 
+        data-sap-ui-oninit="startFlp">
     </script>
 
-    <script>
-        sap.ui.getCore().attachInit(function() {
-            sap.ushell.Container.createRenderer().placeAt("content");
-        });
+    <script id="sap-ui-flpstart">
+        function startFlp() {
+            sap.ui.require(["sap/ushell/services/Container"], function () {
+                sap.ushell.bootstrap("local").then(function () {
+                    sap.ushell.Container.createRenderer('fiori2', true).then(function (oRenderer) {
+                        oRenderer.placeAt("content");
+                    });
+                });
+            });
+        }
     </script>
 </head>
+
 <body class="sapUiBody" id="content"></body>
 </html>

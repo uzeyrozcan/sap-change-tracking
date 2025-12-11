@@ -1,0 +1,278 @@
+<mvc:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    controllerName="aiassistant.controller.aiassistant"
+    displayBlock="true"
+    height="100%">
+
+    <html:style>
+        /* 1. SOL PANEL (SIDEBAR) STİLİ */
+        .sidebarBox { 
+            background-color: var(--sapUiGroupContentBackground) !important; /* Hafif Gri Zemin */
+            border-right: 1px solid var(--sapUiListBorderColor); /* Ayırıcı Çizgi */
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05); /* Derinlik hissi veren hafif gölge */
+            z-index: 10; /* Chat'in üstünde dursun */
+        }
+
+        /* 2. CHAT ALANI (SAĞ) STİLİ */
+        .chatArea {
+            background-color: var(--sapUiBaseBG) !important; /* Net Beyaz */
+        }
+
+        /* Diğer stiller (Aynen koruyoruz) */
+        .chatBubble { padding: 10px 15px !important; border-radius: 12px !important; max-width: 70% !important; position: relative; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .senderBubble { background-color: var(--sapUiSuccessBG) !important; border: 1px solid var(--sapUiSuccessBorder) !important; color: var(--sapUiBaseText) !important; border-top-right-radius: 0 !important; }
+        .receiverBubble { background-color: var(--sapUiListBackground) !important; border: 1px solid var(--sapUiListBorderColor) !important; color: var(--sapUiBaseText) !important; border-top-left-radius: 0 !important; }
+        .chatTime { font-size: 10px !important; color: var(--sapUiContentLabelColor) !important; margin-top: 5px; text-align: right; display: block; }
+        .noBorderList .sapMCLI { border-bottom: 1px solid #e5e5e5 !important; padding: 20px 10px !important; }
+        .noBorderList ul { padding: 10px !important; }
+        .promptItem { cursor: pointer; border: 1px solid var(--sapUiListBorderColor); border-radius: 8px; margin-bottom: 8px; padding: 10px; background: var(--sapUiBaseBG); }
+        .promptItem:hover { background: var(--sapUiListHoverBackground); }
+        
+        /* Sidebar geniş hali */
+        .sidebar-expanded {
+            width: 260px !important;
+            transition: width 0.25s ease;
+        }
+
+        /* Sidebar dar hali */
+        .sidebar-collapsed {
+            width: 50px !important;
+            transition: width 0.25s ease;
+            overflow: hidden !important;
+            padding: 0 !important;
+        }
+
+        /* İçerik gizleme */
+        .collapse-hide {
+            display: none !important;
+        }
+
+        .sidebarBox {
+        background-color: var(--sapUiGroupContentBackground) !important;
+        border-right: 1px solid var(--sapUiListBorderColor) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+        .noSpacing {
+            gap: 0 !important;
+
+        /* Silme Butonu Hover Efekti */
+        .deleteBtn:hover .sapMBtnIcon { 
+            color: #bb0000 !important; /* Koyu Kırmızı */
+            transform: scale(1.2); /* Hafif büyüsün */
+            transition: all 0.2s ease;
+        }
+}
+
+    </html:style>
+    
+    <Page id="page" showHeader="true" enableScrolling="false">
+        
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://menu2" press=".onToggleSidebar" type="Transparent" tooltip="Menü"/>
+                    <Title text="{i18n>appTitle}" level="H2"/>
+                </contentLeft>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <HBox 
+                height="100%" 
+                width="100%" 
+                renderType="Div"
+                justifyContent="Start"
+                alignItems="Stretch"
+                class="noSpacing">
+
+                
+                <VBox 
+                        id="sidebarBox"
+                        width="260px" 
+                        height="100%" 
+                        class="sidebarBox sidebar-expanded">
+                    <layoutData>
+                        <FlexItemData shrinkFactor="0"/>
+                    </layoutData>
+                    
+                    <Button 
+                        text="Yeni Sohbet" 
+                        icon="sap-icon://add" 
+                        type="Emphasized" 
+                        width="90%" 
+                        press=".onNewChat"
+                        class="sapUiSmallMargin"/>
+
+                    <ScrollContainer height="50%" vertical="true" horizontal="false" class="sapUiSmallMarginBeginEnd">
+                        <Label text="Örnek Senaryolar" design="Bold" class="sapUiTinyMarginBottom"/>
+                        <List items="{chatModel>/Prompts}" showSeparators="None" backgroundDesign="Transparent">
+                            <CustomListItem type="Active" press=".onSelectPrompt">
+                                <VBox class="promptItem">
+                                    <Title text="{chatModel>Title}" level="H6"/>
+                                    <Text text="{chatModel>Description}" class="sapUiTinyMarginTop" type="Secondary"/>
+                                </VBox>
+                            </CustomListItem>
+                        </List>
+                    </ScrollContainer>
+                    
+                    <ScrollContainer height="100%" vertical="true" horizontal="false" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                        
+                        <HBox justifyContent="SpaceBetween" alignItems="Center">
+                            <Label text="Geçmiş Sohbetler" design="Bold" class="sapUiTinyMarginBottom"/>
+                            <Button icon="sap-icon://refresh" type="Transparent" press=".loadChatHistory" tooltip="Yenile"/>
+                        </HBox>
+
+                        <List items="{chatModel>/ChatHistory}" backgroundDesign="Transparent" noDataText="Kayıtlı sohbet yok" mode="Delete" delete=".onDeleteHistoryItem">
+                            <StandardListItem 
+                                class="deleteBtn"
+                                title="{chatModel>title}" 
+                                description="{path: 'chatModel>createdAt', formatter: '.formatter.formatMessageDate'}" 
+                                type="Active" 
+                                press=".onSelectHistory"
+                                icon="sap-icon://comment"/>
+                        </List>
+                        
+                         <layoutData>
+                            <FlexItemData growFactor="1" minHeight="0"/>
+                        </layoutData>
+                    </ScrollContainer>
+                </VBox>
+
+                <VBox 
+                    height="100%" 
+                    width="100%" 
+                    justifyContent="SpaceBetween" 
+                    class="chatArea">
+
+                    
+                    <HBox width="100%" alignItems="Center" class="sapUiSmallMarginBottom">
+
+                        <Button 
+                            icon="sap-icon://delete"
+                            text="Sohbeti Temizle" 
+                            type="Transparent" 
+                            tooltip="Sohbeti Temizle"
+                            press=".onClearChat"
+                            class="sapUiTinyMarginBegin"/>
+
+                        <Button 
+                            icon="sap-icon://save" 
+                            text="Sohbeti Kaydet" 
+                            type="Transparent" 
+                            press=".onSaveChat"
+                            tooltip="Bu konuşmayı veritabanına sakla"/>
+
+                        <SearchField 
+                            id="searchField"
+                            width="200%" 
+                            placeholder="{i18n>searchPlaceholder}" 
+                            liveChange=".onSearch"/>
+                        
+                    </HBox>   
+                    
+                    <ScrollContainer
+                        id="chatScroll"
+                        vertical="true"
+                        focusable="true"
+                        horizontal="false"
+                        height="100%">
+                        
+                        <layoutData>
+                            <FlexItemData growFactor="1" baseSize="0%" minHeight="0" styleClass="sapUiTinyMarginBottom"/>
+                        </layoutData>
+
+                        <List id="chatList" 
+                              items="{chatModel>/CurrentSession/Messages}" 
+                              noDataText="{i18n>noDataText}" 
+                              showSeparators="Inner"
+                              class="noBorderList">
+                            
+                            <CustomListItem>
+                                <HBox class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd" alignItems="Start">
+                                    <Avatar src="{chatModel>AuthorPic}" displaySize="S" class="sapUiTinyMarginEnd" press=".onIconPress"/>
+                                    
+                                    <VBox width="100%">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Center">
+                                            <Link text="{chatModel>Author}" press=".onSenderPress" class="sapUiTinyMarginBottom" emphasized="true"/>
+                                            <Text text="{path: 'chatModel>Date', formatter: '.formatter.formatMessageDate'}" class="sapUiTinyMarginBegin" type="Secondary"/>
+                                        </HBox>
+
+                                        <FormattedText htmlText="{path: 'chatModel>Text', formatter: '.formatter.formatRichText'}" />
+
+                                        <VBox 
+                                            visible="{chatModel>HasChart}" 
+                                            width="100%" 
+                                            height="400px" 
+                                            renderType="Bare" 
+                                            class="sapUiSmallMarginTop">
+                                            
+                                            <viz:VizFrame 
+                                                uiConfig="{applicationSet:'fiori'}"
+                                                height="100%" 
+                                                width="100%" 
+                                                vizType="donut"
+                                                vizProperties="{chatModel>ChartProperties}">
+                                                
+                                                <viz:dataset>
+                                                    <viz.data:FlattenedDataset data="{chatModel>ChartData}">
+                                                        <viz.data:dimensions>
+                                                            <viz.data:DimensionDefinition name="Proje" value="{chatModel>Project}" />
+                                                        </viz.data:dimensions>
+                                                        <viz.data:measures>
+                                                            <viz.data:MeasureDefinition name="Saat" value="{chatModel>Hours}" />
+                                                        </viz.data:measures>
+                                                    </viz.data:FlattenedDataset>
+                                                </viz:dataset>
+
+                                                <viz:feeds>
+                                                    <viz.feeds:FeedItem uid="size" type="Measure" values="Saat" />
+                                                    <viz.feeds:FeedItem uid="color" type="Dimension" values="Proje" />
+                                                </viz:feeds>
+                                                
+                                            </viz:VizFrame>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
+                            </CustomListItem>
+                        </List>
+                    </ScrollContainer>
+
+                    <HBox width="100%" alignItems="End" class="sapUiTinyMarginTop">
+                        <layoutData>
+                            <FlexItemData shrinkFactor="0" />
+                        </layoutData>
+
+                        <FeedInput
+                            id="chatInput"
+                            post=".onPost"
+                            showIcon="true"
+                            icon="sap-icon://employee"
+                            placeholder="{i18n>inputPlaceholder}"
+                            class="sapUiTinyMarginEnd">
+                            <layoutData>
+                                <FlexItemData growFactor="1" />
+                            </layoutData>
+                        </FeedInput>
+
+                        <Button
+                            id="btnMic"
+                            icon="sap-icon://microphone"
+                            type="Transparent"
+                            tooltip="Sesle Yaz"
+                            press=".onMicPress"
+                            class="sapUiSmallMarginBottom"/> 
+                    </HBox>
+                </VBox>
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

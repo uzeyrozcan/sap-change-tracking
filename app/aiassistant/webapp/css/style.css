@@ -1,0 +1,35 @@
+.chatBubble {
+    padding: 10px 15px !important; /* !important ile baskın çıkalım */
+    border-radius: 12px;
+    max-width: 70%;
+    position: relative;
+    font-size: 14px;
+}
+
+.senderBubble {
+    background-color: #dcf8c6 !important; /* Renk gelmezse diye zorluyoruz */
+    color: #000;
+    border-top-right-radius: 0;
+}
+
+.receiverBubble {
+    background-color: #ffffff !important;
+    color: #000;
+    border-top-left-radius: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Tarih/Saat yazısı */
+.chatTime {
+    font-size: 10px;
+    color: #999;
+    margin-top: 5px;
+    text-align: right;
+    display: block;
+}
+
+/* Liste elemanının varsayılan çizgilerini kaldır */
+.noBorderList .sapMCLI {
+    border-bottom: none !important;
+    padding: 5px 10px;
+}

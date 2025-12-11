@@ -11,10 +11,12 @@
     "@sap/cds": "^9.4.4",
     "@sap/cds-mtxs": "^3",
     "@sap/xssec": "^4",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^4",
+    "express": "^4.22.1",
+    "mongoose": "^9.0.1",
     "node-fetch": "^2.7.0",
-    "openai": "^6.7.0",
+    "openai": "^6.10.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -34,8 +36,9 @@
     "watch-ui5chatapp": "cds watch --open ui5chatapp/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-products": "cds watch --open products/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy Fiorielements --delete-services --delete-service-keys --delete-service-brokers",
-    "build": "rimraf mta_archives resources gen && mbt build --mtar Fiorielements.mtar",
-    "deploy": "cf deploy mta_archives/Fiorielements.mtar"
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-aiassistant": "cds watch --open aiassistant/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {
