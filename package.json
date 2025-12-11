@@ -5,29 +5,72 @@
   "dependencies": {
     "@cap-js/change-tracking": "^1.1.3",
     "@cap-js/hana": "^2",
+    "@openai/agents": "^0.2.1",
+    "@openai/agents-core": "^0.2.1",
+    "@openai/agents-openai": "^0.2.1",
     "@sap/cds": "^9.4.4",
-    "express": "^4"
+    "@sap/cds-mtxs": "^3",
+    "@sap/xssec": "^4",
+    "dotenv": "^17.2.3",
+    "express": "^4",
+    "node-fetch": "^2.7.0",
+    "openai": "^6.7.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
-    "cds-plugin-ui5": "^0.13.0"
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0",
+    "json-server": "^1.0.0-beta.3",
+    "mbt": "^1.2.29",
+    "rimraf": "^5.0.5"
   },
   "scripts": {
     "start": "cds-serve",
+    "mock-api": "json-server --watch mock/activities.json mock/companies.json --port 4005",
     "watch-project": "cds watch --open project/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-changelog": "cds watch --open changelog/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-changelog": "cds watch --open changelog/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-chat": "cds watch --open chat/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-ui5chatapp": "cds watch --open ui5chatapp/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-products": "cds watch --open products/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy Fiorielements --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf mta_archives resources gen && mbt build --mtar Fiorielements.mtar",
+    "deploy": "cf deploy mta_archives/Fiorielements.mtar"
   },
   "private": true,
   "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "[production]": {
+          "kind": "hana"
+        }
+      },
+      "[production]": {
+        "auth": "xsuaa",
+        "multitenancy": true
+      },
+      "html5-repo": true,
+      "portal": true,
+      "app-front": true,
+      "[with-mtx]": {
+        "multitenancy": true
+      }
+    },
     "features": {
       "changelog": true
-    }
+    },
+    "profile": "with-mtx-sidecar"
   },
   "workspaces": [
     "app/*"
   ],
+  "engines": {
+    "node": ">=18 <21"
+  },
   "sapux": [
     "app/project",
-    "app/changelog"
+    "app/changelog",
+    "app/products"
   ]
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fiori Launchpad - Yerel Test</title>
+
+    <script>
+        window["sap-ushell-config"] = {
+            defaultRenderer: "fiori2",
+            renderers: {
+                fiori2: {
+                    componentData: {
+                        config: {
+                            search: "hidden",
+                            enableSearch: false
+                        }
+                    }
+                }
+            },
+            services: {
+                LaunchPage: {
+                    adapter: {
+                        config: {
+                            groups: [{
+                                id: "mygroup",
+                                title: "Uygulamalarım",
+                                isPreset: true,
+                                isVisible: true,
+                                tiles: [
+                                    {
+                                        id: "productstile",
+                                        title: "Ürün Yönetimi",
+                                        subtitle: "Fiori Elements",
+                                        icon: "sap-icon://product",
+                                        target: { semanticObject: "Products", action: "manage" }
+                                    },
+                                    {
+                                        id: "changelogtile",
+                                        title: "Değişiklik Geçmişi",
+                                        subtitle: "Log Kayıtları",
+                                        icon: "sap-icon://history",
+                                        target: { semanticObject: "ChangeLog", action: "monitor" }
+                                    }
+                                ]
+                            }]
+                        }
+                    }
+                },
+                NavTargetResolution: {
+                    adapter: {
+                        config: {
+                            applications: {
+                                "Products-manage": {
+                                    additionalInformation: "SAPUI5.Component=products",
+                                    applicationType: "URL",
+                                    url: "./products/webapp", 
+                                    description: "Ürünleri Yönet"
+                                },
+                                "ChangeLog-monitor": {
+                                    additionalInformation: "SAPUI5.Component=changelog",
+                                    applicationType: "URL",
+                                    url: "./changelog/webapp",
+                                    description: "Logları İzle"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
+    <script src="https://ui5.sap.com/resources/sap-ui-core.js"
+        data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration, sap.ui.layout"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-frameOptions="allow">
+    </script>
+
+    <script>
+        sap.ui.getCore().attachInit(function() {
+            sap.ushell.Container.createRenderer().placeAt("content");
+        });
+    </script>
+</head>
+<body class="sapUiBody" id="content"></body>
+</html>

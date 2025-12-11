@@ -1,0 +1,46 @@
+<mvc:View controllerName="chat.controller.App"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <App id="app">
+        <HBox class="chatContainer">
+        <!-- Left sidebar -->
+        <VBox width="260px" class="sidebar">
+          <List id="leftList" inset="false" headerText="Uygulamalar">
+            <items> 
+              <StandardListItem title="SAP Fiori" icon="sap-icon://syringe" />
+              <StandardListItem title="Furest" icon="sap-icon://account" />
+              <StandardListItem title="Sormek" icon="sap-icon://hint" />
+              <StandardListItem title="Fattmites" icon="sap-icon://message" />
+              <StandardListItem title="Fediveitls" icon="sap-icon://group" />
+            </items>
+          </List>
+        </VBox>
+
+        <!-- Chat panel -->
+        <VBox class="chatPanel">
+          <Panel class="chatBox">
+            <List id="chatList" items="{/messages}" class="messageList">
+              <items>
+                <CustomListItem type="Inactive">
+                  <HBox class="{= ${from} === 'bot' ? 'assistantBubble' : (${from} === 'system' ? 'systemBubble' : 'userBubble')}" width="100%">
+                    <VBox>
+                      <Text text="{sender}" class="senderText" />
+                      <Text text="{message}" wrapping="true" class="messageText" />
+                    </VBox>
+                  </HBox>
+                </CustomListItem>
+              </items>
+            </List>
+          </Panel>
+
+          <HBox class="inputBar">
+            <Button icon="sap-icon://microphone" type="Transparent" />
+            <Input id="inputMsg" placeholder="Mesajınızı buraya yazın..." width="100%" />
+            <Button icon="sap-icon://send" type="Emphasized" press="onSend" />
+          </HBox>
+        </VBox>
+      </HBox>
+    </App>
+</mvc:View>

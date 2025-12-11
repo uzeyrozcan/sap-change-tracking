@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: changelog
+  name: chat
 type: application
 server:
   customMiddleware:
@@ -15,7 +15,6 @@ server:
             - /resources
             - /test-resources
           url: https://sapui5.hana.ondemand.com
-
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -27,3 +26,19 @@ server:
       configuration:
         flp:
           theme: sap_horizon
+    - name: ui5-tooling-transpile-middleware
+      afterMiddleware: compression
+      configuration:
+        debug: true
+        transformModulesToUI5:
+          overridesToOverride: true
+        excludePatterns:
+          - /Component-preload.js
+builder:
+  customTasks:
+    - name: ui5-tooling-transpile-task
+      afterTask: replaceVersion
+      configuration:
+        debug: true
+        transformModulesToUI5:
+          overridesToOverride: true

@@ -1,0 +1,1 @@
+using FiorielementsService as service from '../../srv/service';

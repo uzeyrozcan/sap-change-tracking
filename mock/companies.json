@@ -1,0 +1,8 @@
+{
+  "companies": [
+    { "id": "cmp_golive_tr", "name": "GoLive A.Ş." },
+    { "id": "cmp_acme_tr", "name": "ACME Yazılım Ltd." },
+    { "id": "cmp_zen_tr", "name": "Zen Danışmanlık" },
+    { "id": "cmp_teknom_tr", "name": "Teknom Bilişim" }
+  ]
+}

@@ -1,0 +1,95 @@
+/* === Global === */
+html, body { height: 100%; background: #f5f7fb; }
+.sapMPage { background: transparent !important; }
+
+/* === Shell Card === */
+.chatShell {
+  max-width: 1100px;
+  margin: 2rem auto;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(3,25,53,.08);
+  overflow: hidden;
+}
+
+/* === Left Nav (Master) === */
+.sideNav {
+  width: 18rem;
+  background: #f1f4f9;
+  border-right: 1px solid rgba(0,0,0,.06);
+}
+.sideHeader {
+  padding: 1.2rem 1.4rem;
+  font-weight: 700;
+  color: #0a6ed1;
+  font-size: 1.05rem;
+}
+.sideList .sapMLIB {
+  background: transparent;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.newChatBtn {
+  margin: 1rem;
+  border-radius: 10px;
+}
+
+/* === Chat Area (Detail) === */
+.chatArea {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  background: #fff;
+}
+.chatTitle {
+  padding: .25rem 0 1rem 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Scroll area for messages */
+.chatList {
+  height: calc(100vh - 280px);
+  overflow-y: auto;
+  padding-right: .5rem;
+}
+
+/* === Message bubbles === */
+.bubble {
+  max-width: 70%;
+  padding: .6rem .9rem;
+  border-radius: 14px;
+  line-height: 1.42;
+  word-break: break-word;
+  box-shadow: 0 2px 12px rgba(10,22,50,.06);
+}
+.bubbleUser {
+  background: #0a6ed1; /* Horizon primary */
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+.bubbleBot {
+  background: #eaf1fb;
+  color: #1a1a1a;
+  border-bottom-left-radius: 6px;
+}
+
+/* Aligners */
+.rowRight { justify-content: flex-end; }
+.rowLeft  { justify-content: flex-start; }
+
+/* === Footer input bar === */
+.inputBar {
+  border-top: 1px solid rgba(0,0,0,.06);
+  padding: .6rem .8rem;
+  background: #fff;
+}
+.inputField {
+  background: #f3f5f9 !important;
+  border-radius: 10px !important;
+  padding: .2rem .6rem !important;
+}
+.sendBtn {
+  border-radius: 10px !important;
+}
+
+/* tiny animation */
+.fadeIn { animation: fadeIn .2s ease-in; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(3px)} to{opacity:1;transform:none} }

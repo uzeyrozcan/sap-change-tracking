@@ -8,6 +8,11 @@ default-*.json
 gen/
 node_modules/
 target/
+resources/
+gen/
+dist/
+.env
+default-env.json
 
 # Web IDE, App Studio
 .che/
