@@ -1,0 +1,111 @@
+{
+  "CurrentSession": {
+    "ThreadID": "thread_demo_001",
+    "Messages": [
+      {
+        "Author": "Sen",
+        "AuthorPic": "sap-icon://employee",
+        "Type": "Sender",
+        "Date": "2025-02-01T09:45:00",
+        "Text": "Günaydın, bugünkü eforumu girmek istiyorum.",
+        "JobTitle": "SAP Danışmanı",
+        "Status": "Busy",
+        "StatusState": "Warning"
+      },
+      {
+        "Author": "GoLive Asistan",
+        "AuthorPic": "sap-icon://it-host",
+        "Type": "Reply",
+        "Date": "2025-02-01T09:45:05",
+        "Text": "Tabii kral 😎 Bugünkü aktivite detaylarını paylaşabilirsin. Süre, iş tanımı ve proje kodu yeterli olacak.",
+        "JobTitle": "GoLive Asistan",
+        "Status": "Active",
+        "StatusState": "Success"
+      },
+      {
+        "Author": "Sen",
+        "AuthorPic": "sap-icon://employee",
+        "Type": "Sender",
+        "Date": "2025-02-01T09:46:10",
+        "Text": "3 saat geliştirme, 1 saat toplantı. Proje: GAP.",
+        "JobTitle": "SAP Danışmanı",
+        "Status": "Busy",
+        "StatusState": "Warning"
+      },
+      {
+        "Author": "GoLive Asistan",
+        "AuthorPic": "sap-icon://it-host",
+        "Type": "Reply",
+        "Date": "2025-02-01T09:46:12",
+        "Text": "Harika dostum! GAP projesi için toplam **4 saat** eforunu kaydediyorum. Onaylıyor musun? ✔️",
+        "JobTitle": "GoLive Asistan",
+        "Status": "Active",
+        "StatusState": "Success"
+      },
+      {
+        "Author": "Sen",
+        "AuthorPic": "sap-icon://employee",
+        "Type": "Sender",
+        "Date": "2025-02-01T09:46:40",
+        "Text": "Onaylıyorum, kaydedebilirsin 👍",
+        "JobTitle": "SAP Danışmanı",
+        "Status": "Busy",
+        "StatusState": "Warning"
+      },
+      {
+        "Author": "Sen",
+        "AuthorPic": "sap-icon://employee",
+        "Type": "Sender",
+        "Date": "2025-02-01T09:46:40",
+        "Text": "Onaylıyorum, kaydedebilirsin 👍",
+        "JobTitle": "SAP Danışmanı",
+        "Status": "Busy",
+        "StatusState": "Warning"
+      },
+      {
+        "Author": "Sen",
+        "AuthorPic": "sap-icon://employee",
+        "Type": "Sender",
+        "Date": "2025-02-01T09:46:40",
+        "Text": "Onaylıyorum, kaydedebilirsin 👍",
+        "JobTitle": "SAP Danışmanı",
+        "Status": "Busy",
+        "StatusState": "Warning"
+      },
+      {
+        "Author": "Sen",
+        "AuthorPic": "sap-icon://employee",
+        "Type": "Sender",
+        "Date": "2025-02-01T09:46:40",
+        "Text": "Onaylıyorum, kaydedebilirsin 👍",
+        "JobTitle": "SAP Danışmanı",
+        "Status": "Busy",
+        "StatusState": "Warning"
+      }
+    ]
+  },
+  "Prompts": [
+    {
+      "Title": "📝 Aktivite Girişi",
+      "Description": "Günlük eforunu kaydet",
+      "Prompt": "Aktivite girmek istiyorum.",
+      "AssistantID": "ASSISTANT_ID"
+    },
+    {
+      "Title": "📅 Planlama",
+      "Description": "Haftalık plan oluştur",
+      "Prompt": "Gelecek hafta için planlama yapmak istiyorum.",
+      "AssistantID": "ASSISTANT_ID"
+    },
+    {
+      "Title": "📊 Raporlama",
+      "Description": "Durum raporu al",
+      "Prompt": "Şu ana kadarki aktivitelerimin raporunu ver.",
+      "AssistantID": "ASSISTANT_ID"
+    }
+  ],
+  "History": [
+    { "id": "1", "title": "ACME Raporu", "date": "Dün" },
+    { "id": "2", "title": "GoLive Planlama", "date": "25.11.2025" }
+  ]
+}

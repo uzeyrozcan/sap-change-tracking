@@ -1,7 +1,6 @@
 _schema-version: 3.3.0
 ID: Fiorielements
-description: 'Recruiting in the digital age: Simplify and accelerate with HR Rapid
-  Apply Simplified.'
+description: 'SAP Fiori development trial learning environment'
 version: 1.0.0
 modules:
 - name: Fiorielements-srv
@@ -134,7 +133,7 @@ modules:
     builder: custom
     commands:
     - npm install
-    - npm run build
+    - npm run build:cf
     supported-platforms: []
 - name: chat
   type: html5
@@ -144,9 +143,8 @@ modules:
     builder: custom
     commands:
     - npm install
-    - npm run build
+    - npm run build:cf
     supported-platforms: []
-
 - name: products
   type: html5
   path: app/products
@@ -155,7 +153,7 @@ modules:
     builder: custom
     commands:
     - npm install
-    - npm run build
+    - npm run build:cf
     supported-platforms: []
 - name: Fiorielements-app-deployer
   type: com.sap.application.content
@@ -179,7 +177,10 @@ modules:
       - products.zip
       name: products
       target-path: app/
-
+    - artifacts:
+      - aiassistant.zip
+      name: aiassistant
+      target-path: app/
 - name: Fiorielements-mtx
   type: nodejs
   path: gen/mtx/sidecar
@@ -205,6 +206,16 @@ modules:
     no-route: true
   build-parameters:
     builder: npm-ci
+- name: aiassistant
+  type: html5
+  path: app/aiassistant
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: Fiorielements-auth
   type: org.cloudfoundry.managed-service
