@@ -1,7 +1,6 @@
 _schema-version: 3.3.0
 ID: Fiorielements
-description: 'Recruiting in the digital age: Simplify and accelerate with HR Rapid
-  Apply Simplified.'
+description: 'SAP Fiori development trial learning environment'
 version: 1.0.0
 modules:
 - name: Fiorielements-srv

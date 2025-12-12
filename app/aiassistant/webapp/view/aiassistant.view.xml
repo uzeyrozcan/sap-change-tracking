@@ -118,7 +118,7 @@
                             <CustomListItem type="Active" press=".onSelectPrompt">
                                 <VBox class="promptItem">
                                     <Title text="{chatModel>Title}" level="H6"/>
-                                    <Text text="{chatModel>Description}" class="sapUiTinyMarginTop" type="Secondary"/>
+                                    <Text text="{chatModel>Description}" class="sapUiTinyMarginTop sapThemeText-Secondary"/>
                                 </VBox>
                             </CustomListItem>
                         </List>
@@ -203,7 +203,7 @@
                                     <VBox width="100%">
                                         <HBox justifyContent="SpaceBetween" alignItems="Center">
                                             <Link text="{chatModel>Author}" press=".onSenderPress" class="sapUiTinyMarginBottom" emphasized="true"/>
-                                            <Text text="{path: 'chatModel>Date', formatter: '.formatter.formatMessageDate'}" class="sapUiTinyMarginBegin" type="Secondary"/>
+                                            <Text text="{path: 'chatModel>Date', formatter: '.formatter.formatMessageDate'}" class="sapUiTinyMarginBegin sapThemeText-Secondary"/>
                                         </HBox>
 
                                         <FormattedText htmlText="{path: 'chatModel>Text', formatter: '.formatter.formatRichText'}" />

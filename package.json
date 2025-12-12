@@ -42,6 +42,9 @@
   },
   "private": true,
   "cds": {
+    "server": {
+      "impl": "./srv/srvc.js"
+    },
     "requires": {
       "db": {
         "kind": "sqlite",

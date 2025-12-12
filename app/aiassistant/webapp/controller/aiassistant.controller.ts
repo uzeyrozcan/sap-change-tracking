@@ -59,17 +59,29 @@ export default class aiassistant extends Controller {
     private _sBackendURL: string = "";
 
     public onInit(): void {
-        const oModel = this.getOwnerComponent()?.getModel("chatModel") as JSONModel;
+        const oData = {
+            chatModel: {
+                // Başlangıç verileri gerekirse buraya
+            },
+            CurrentSession: {
+                Messages: [],
+                ThreadID: null
+            },
+            ChatHistory: []
+        };
+        const oModel = new JSONModel(oData);
+        this.getView()?.setModel(oModel, "chatModel");
+
+        // 2. Geçmişi Yükle
         this.loadChatHistory();
-        // Varsayılan asistanı ayarla
+
+        // 3. Varsayılan asistanı ayarla
         this._sActiveAssistantID = this._sDefaultAssistantID;
 
-        // Model kontrolü
-        if (oModel && !oModel.getProperty("/CurrentSession")) {
-            oModel.setProperty("/CurrentSession", { Messages: [], ThreadID: null });
-        }
+        // (Eski koddaki "Component üzerinden model çekme" ve "if check" kısımlarını sildik, 
+        // çünkü yukarıda modeli zaten dolu dolu yarattık.)
 
-        // CSS Yükleme
+        // 4. CSS Yükleme
         const sCssPath = sap.ui.require.toUrl("sap-change-tracking/app/aiassistant/webapp/css/style.css");
         const link = document.createElement("link");
         link.type = "text/css";
@@ -77,7 +89,7 @@ export default class aiassistant extends Controller {
         link.href = sCssPath;
         document.head.appendChild(link);
 
-        // Enter Tuşu Desteği
+        // 5. Enter Tuşu Desteği
         const oFeedInput = this.byId("chatInput") as FeedInput;
         if (oFeedInput) {
             oFeedInput.addEventDelegate({
