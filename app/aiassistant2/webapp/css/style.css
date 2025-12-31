@@ -1,0 +1,166 @@
+/* 1. ANA SAYFA VE LAYOUT AYARLARI */
+.mainPageBackground {
+    background-color: var(--sapUiGroupContentBackground);
+}
+
+.noSpacing {
+    gap: 0 !important;
+}
+
+/* SIDEBAR ANA KONTEYNER */
+.sidebarBox {
+    transition: width 0.3s ease-in-out !important;
+    overflow: hidden !important; /* Dışarı taşan her şeyi keser */
+}
+
+/* GENİŞ HALİ */
+.sidebar-expanded {
+    width: 280px !important;
+    min-width: 280px;
+}
+
+/* DARALINCA: Tamamen 0 yapmak yerine ikonlar kalsın dersen 68px, 
+   hiç kalıntı kalmasın dersen 0px yapmalısın. */
+.sidebar-collapsed {
+    width: 0px !important; /* Tamamen kapanması için 0 yaptık */
+    min-width: 0px !important;
+    border-right: none !important; /* Çizgi kalıntısını siler */
+}
+
+/* SIDEBAR İÇİNDEKİ HER ŞEYİ GİZLE */
+.sidebar-collapsed * {
+    visibility: hidden; /* Elemanları tamamen işlemez hale getirir */
+    opacity: 0;
+}
+
+/* CHAT ALANI - HER ZAMAN YAYIL */
+.chatArea {
+    flex-grow: 1 !important; /* Boşalan alanı anında doldurur */
+    width: 100%;
+}
+
+/* 4. SOHBET BALONCUKLARI - WHATSAPP / CHATGPT TARZI */
+.chatBubble { 
+    padding: 12px 16px !important; 
+    border-radius: 18px !important; 
+    margin: 8px 12px !important; 
+    max-width: 75% !important; 
+    position: relative; 
+    font-size: 14px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+    line-height: 1.5;
+}
+
+/* Kullanıcı (Siz) Baloncuğu */
+.senderBubble { 
+    background-color: #0070f2 !important; /* SAP Fiori Mavisi */
+    color: #ffffff !important; 
+    border-bottom-right-radius: 2px !important; 
+    align-self: flex-end; 
+    margin-left: auto !important; 
+}
+
+.senderBubble .chatText {
+    color: #ffffff !important;
+}
+
+/* Asistan (AI) Baloncuğu */
+.receiverBubble { 
+    background-color: #f0f2f5 !important; /* Hafif Gri */
+    border: 1px solid #e1e4e8 !important;
+    color: #32363a !important; 
+    border-bottom-left-radius: 2px !important; 
+    align-self: flex-start; 
+    margin-right: auto !important; 
+}
+
+/* 5. METİN VE ZAMAN ETİKETLERİ */
+.chatText {
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+}
+
+.smallTime { 
+    font-size: 10px !important; 
+    color: var(--sapUiContentLabelColor) !important; 
+    margin-top: 4px;
+}
+
+/* 6. PROMPT (HIZLI BAŞLANGIÇ) KARTLARI */
+.promptItem { 
+    cursor: pointer; 
+    border: 1px solid var(--sapUiListBorderColor); 
+    border-radius: 10px; 
+    margin-bottom: 8px; 
+    padding: 12px; 
+    background: var(--sapUiBaseBG); 
+    transition: all 0.2s ease-in-out;
+}
+
+.promptItem:hover { 
+    background: var(--sapUiListHoverBackground); 
+    border-color: #0070f2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 7. INPUT ALANI (ALTTA SABİT MODERN BAR) */
+.inputAreaContainer {
+    background-color: var(--sapUiBaseBG); 
+    padding: 15px 0; 
+    border-top: 1px solid var(--sapUiListBorderColor);
+}
+
+.modernInput {
+    width: 90% !important;      
+    max-width: 1000px;          
+    margin: 0 auto !important;   
+    background: white;
+    border-radius: 28px;
+    padding: 4px 12px;
+    box-shadow: 0 -2px 15px rgba(0,0,0,0.04);
+    border: 1px solid #dcdfe6;
+}
+
+/* Listeyi temizle */
+.noBorderList ul {
+    border: none !important;
+    padding: 10px 0 !important;
+}
+
+/* TOOLBAR GENEL */
+.chatToolbar {
+    border-bottom: 1px solid var(--sapUiListBorderColor) !important;
+    height: 3rem !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* BUTONLARDA ÖZEL HOVER RENKLERİ */
+.toolbarBtn {
+    transition: all 0.2s ease-in-out;
+}
+
+.redHover:hover {
+    color: #bb0000 !important; /* Temizle butonu kırmızı parlasın */
+    background-color: rgba(187, 0, 0, 0.05) !important;
+}
+
+.blueHover:hover {
+    color: #0070f2 !important; /* Kaydet butonu mavi parlasın */
+    background-color: rgba(0, 112, 242, 0.05) !important;
+}
+
+/* ARAMA KUTUSU MODERNİZASYONU */
+.modernSearchField {
+    background: transparent !important;
+}
+
+.modernSearchField .sapMSF {
+    border-radius: 20px !important;
+    border: 1px solid var(--sapUiListBorderColor) !important;
+    background-color: var(--sapUiBaseBG) !important;
+    transition: border-color 0.2s;
+}
+
+.modernSearchField .sapMSF:hover {
+    border-color: #0070f2 !important;
+}

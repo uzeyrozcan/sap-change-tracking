@@ -1,0 +1,15 @@
+ID;name;sector;city;country
+comp-001;SAP Türkiye;Technology;Istanbul;Turkey
+comp-002;Koç Sistem;Consultancy;Istanbul;Turkey
+comp-003;Aselsan;Defense;Ankara;Turkey
+comp-004;Tofaş;Automotive;Bursa;Turkey
+comp-005;Arçelik;Electronics;Istanbul;Turkey
+comp-006;HAVELSAN;Defense;Ankara;Turkey
+comp-007;Turkcell;Telecommunications;Istanbul;Turkey
+comp-008;Eczacıbaşı;Healthcare;Istanbul;Turkey
+comp-009;Vestel;Electronics;Manisa;Turkey
+comp-010;Ford Otosan;Automotive;Kocaeli;Turkey
+comp-011;Türk Telekom;Telecommunications;Ankara;Turkey
+comp-012;Baykar;Defense;Istanbul;Turkey
+comp-013;Migros;Retail;Istanbul;Turkey
+comp-014;Anadolu Efes;Food & Beverage;Istanbul;Turkey

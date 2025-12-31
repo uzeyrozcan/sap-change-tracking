@@ -1,0 +1,4 @@
+ID;title;description;prompt;assistant_ID;icon;sortOrder
+3f9a6c2e-8b4d-4c6a-ae3c-9f1d7a2b4e10;S/4HANA Nedir?;Temel özellikleri nelerdir?;S/4HANA'nın temel özelliklerini açıkla.;asst_yc4XTIGZm6Y1IFU9buUJy85O;sap-icon://question-mark;1
+a1c7e5b4-2d9f-4f0a-9b3e-6c8d2a7f5e41;Aktivite Girişi;Günlük eforunu kaydet;Bugün için 4 saatlik geliştirme aktivitesi girmek istiyorum.;asst_yc4XTIGZm6Y1IFU9buUJy85O;sap-icon://it-host;2
+6b2f8a9d-0c3e-4e7a-9f1b-d5a4c8e2b630;Fiori Elements;List Report nasıl yapılır?;Fiori Elements ile List Report oluşturma adımlarını anlat.;asst_pVK9xuDHo21p4DVGkq2qIUph;sap-icon://BusinessSuiteInAppSymbols/icon-fiori;3

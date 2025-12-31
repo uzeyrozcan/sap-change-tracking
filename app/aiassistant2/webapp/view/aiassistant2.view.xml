@@ -1,0 +1,135 @@
+<mvc:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    controllerName="aiassistant2.controller.aiassistant2"
+    displayBlock="true"
+    height="100%">
+
+    <Page id="page" showHeader="true" enableScrolling="false">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://menu2" press=".onToggleSidebar" type="Transparent" />
+                    <Title text="AI Consultant" />
+                </contentLeft>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <HBox height="100%" width="100%" renderType="Div" justifyContent="Start" alignItems="Stretch" class="noSpacing">
+                
+                <VBox id="sidebarBox" width="260px" height="100%" class="sidebarBox sidebar-expanded">
+                    <layoutData>
+                        <FlexItemData shrinkFactor="0"/>
+                    </layoutData>
+                    
+                    <Button text="Yeni Sohbet" icon="sap-icon://add" type="Emphasized" width="90%" press=".onNewChat" class="sapUiSmallMargin"/>
+
+                    <ScrollContainer height="40%" vertical="true" horizontal="false" class="sapUiSmallMarginBeginEnd">
+                        <Label text="Önerilenler" design="Bold" class="sapUiTinyMarginBottom"/>
+                        <List items="{path: '/Prompts'}" showSeparators="None" backgroundDesign="Transparent">
+                            <CustomListItem type="Active" press=".onSelectPrompt">
+                                <VBox class="promptItem">
+                                    <Title text="{title}" level="H6"/>
+                                    <Text text="{description}" class="sapUiTinyMarginTop sapThemeText-Secondary"/>
+                                </VBox>
+                            </CustomListItem>
+                        </List>
+                    </ScrollContainer>
+                    
+                    <ScrollContainer height="100%" vertical="true" horizontal="false" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center">
+                            <Label text="Geçmiş Sohbetler" design="Bold" class="sapUiTinyMarginBottom"/>
+                            <Button icon="sap-icon://refresh" type="Transparent" press="._refreshLists" tooltip="Yenile"/>
+                        </HBox>
+
+                        <List id="historyList" items="{path: '/ChatSessions', parameters: { $orderby: 'createdAt desc' }}" backgroundDesign="Transparent" mode="Delete" delete=".onDeleteHistory">
+                            <StandardListItem title="{title}" description="{path: 'createdAt', formatter: '.formatter.formatMessageDate'}" type="Active" press=".onSelectHistory" icon="sap-icon://comment"/>
+                        </List>
+                        
+                         <layoutData>
+                            <FlexItemData growFactor="1" minHeight="0"/>
+                        </layoutData>
+                    </ScrollContainer>
+                </VBox>
+
+                <VBox height="100%" width="100%" justifyContent="SpaceBetween" class="chatArea">
+                    
+                    <OverflowToolbar design="Transparent" class="chatToolbar sapUiSmallMarginBeginEnd">
+                            <Button 
+                                icon="sap-icon://delete" 
+                                text="Sohbeti Temizle" 
+                                type="Transparent" 
+                                press=".onClearChat" 
+                                tooltip="Sohbeti Temizle"
+                                class="toolbarBtn redHover"/>
+                            
+                            <Button 
+                                icon="sap-icon://save" 
+                                text="Sohbeti Kaydet" 
+                                type="Transparent" 
+                                press=".onSaveChat" 
+                                tooltip="Konuşmayı Sakla"
+                                class="toolbarBtn blueHover"/>
+                                
+                            <ToolbarSpacer /> <SearchField 
+                                id="searchField" 
+                                width="300px" 
+                                placeholder="Mesajlarda ara..." 
+                                liveChange=".onSearch"
+                                class="modernSearchField"/>
+                        </OverflowToolbar>
+                    
+                    <ScrollContainer id="chatScroll" vertical="true" focusable="true" horizontal="false" height="100%" width="100%">
+                        <layoutData>
+                            <FlexItemData growFactor="1" baseSize="0%" minHeight="0"/>
+                        </layoutData>
+
+                        <List id="chatList" items="{path: '/ChatMessages'}" showSeparators="None" class="noBorderList">
+                            <CustomListItem>
+                                <VBox class="sapUiTinyMarginBeginEnd">
+                                    <VBox class="{path: 'role', formatter: '.formatter.getMessageStyle'} chatBubble">
+                                        <HBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+                                            <HBox alignItems="Center">
+                                                <Avatar src="{path: 'role', formatter: '.formatter.getIcon'}" displaySize="XS" class="sapUiTinyMarginEnd" press=".onIconPress" active="true"/>
+                                                <Label text="{path: 'role', formatter: '.formatter.getName'}" design="Bold" visible="{= ${role} !== 'user'}"/>
+                                            </HBox>
+                                            <Text text="{path: 'timestamp', formatter: '.formatter.formatMessageDate'}" class="smallTime"/>
+                                        </HBox>
+                                        <Text text="{content}" class="chatText" wrapping="true" />
+                                    </VBox>
+                                </VBox>
+                            </CustomListItem>
+                        </List>
+                    </ScrollContainer>
+
+                    <HBox width="100%" alignItems="End" class="sapUiTinyMarginTop sapUiSmallMarginBottom">
+                        <layoutData>
+                            <FlexItemData shrinkFactor="0" />
+                        </layoutData>
+
+                        <FeedInput
+                            id="chatInput"
+                            post=".onPostMessage"
+                            showIcon="true"
+                            icon="sap-icon://employee"
+                            placeholder="Bir şeyler sorun..."
+                            class="sapUiTinyMarginEnd"
+                            busy="{view>/busy}"
+                            busyIndicatorDelay="0"
+                            enabled="{= !${view>/busy}}">
+                            <layoutData>
+                                <FlexItemData growFactor="1" />
+                            </layoutData>
+                        </FeedInput>
+
+                        <Button id="btnMic" icon="sap-icon://microphone" type="Transparent" press=".onMicPress" class="sapUiSmallMarginBottom sapUiTinyMarginEnd"/> 
+                    </HBox>
+                </VBox>
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

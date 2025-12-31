@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		title="Kullanıcı Detayları"
+		class="sapUiPopupWithPadding"
+		placement="Auto">
+		
+        <beginButton>
+			<Button text="Kapat" press=".onClosePopover" />
+		</beginButton>
+        
+		<content>
+            <VBox class="sapUiSmallMargin">
+                <HBox alignItems="Center" class="sapUiSmallMarginBottom">
+                    <Avatar 
+                        src="{path: 'role', formatter: '.formatter.getIcon'}" 
+                        displaySize="L" 
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <VBox>
+                        <Title text="{path: 'role', formatter: '.formatter.getName'}" level="H3"/>
+                        
+                        <ObjectStatus 
+                            text="{= ${role} === 'user' ? 'Aktif' : 'Online' }" 
+                            state="{= ${role} === 'user' ? 'Success' : 'Information' }" 
+                            icon="{= ${role} === 'user' ? 'sap-icon://sys-enter-2' : 'sap-icon://it-host' }"/>
+                    </VBox>
+                </HBox>
+                
+                <Label text="Unvan" design="Bold"/>
+                <Text text="{= ${role} === 'user' ? 'SAP Danışmanı' : 'Sanal Asistan' }" class="sapUiTinyMarginBottom"/>
+                
+                <Label text="Mesaj Zamanı" design="Bold"/>
+                <Text text="{path: 'timestamp', formatter: '.formatter.formatMessageDate'}"/>
+            </VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

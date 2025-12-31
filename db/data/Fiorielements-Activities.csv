@@ -1,0 +1,15 @@
+ID;company_ID;hours;description;date
+act-001;comp-001;4.50;Fiori Elements analizi yapıldı.;2024-12-01
+act-002;comp-001;2.00;BTP yetkilendirme sorunları çözüldü.;2024-12-01
+act-003;comp-002;6.00;ABAP raporları optimize edildi.;2024-12-02
+act-004;comp-003;3.50;Entegrasyon testleri.;2024-12-03
+act-005;comp-002;5.00;SAP UI5 ekran düzenlemeleri yapıldı.;2024-12-03
+act-006;comp-004;2.50;MES sistemi bağlantı kontrolü sağlandı.;2024-12-04
+act-007;comp-001;7.00;BTP Workflow geliştirmesi tamamlandı.;2024-12-05
+act-008;comp-003;4.00;Güvenlik testleri gerçekleştirildi.;2024-12-05
+act-009;comp-004;3.00;SAP MM entegrasyon hatası giderildi.;2024-12-06
+act-010;comp-002;6.50;Backend servisleri yeniden yapılandırıldı.;2024-12-06
+act-011;comp-003;2.00;Yetki objeleri güncellendi.;2024-12-07
+act-012;comp-004;8.00;Otomasyon senaryoları yazıldı.;2024-12-07
+act-013;comp-001;1.50;Sistem performans izleme yapıldı.;2024-12-08
+act-014;comp-003;5.00;Yeni modül analiz toplantısı gerçekleştirildi.;2024-12-08

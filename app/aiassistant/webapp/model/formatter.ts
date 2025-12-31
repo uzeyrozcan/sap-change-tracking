@@ -2,7 +2,7 @@ import DateFormat from "sap/ui/core/format/DateFormat";
 
 export default {
     /**
-     * Tarih Formatlayıcı (Mevcut)
+     * Tarih Formatlayıcı
      */
     formatMessageDate: function (date: Date | string): string {
         if (!date) return "";
@@ -16,24 +16,49 @@ export default {
     },
 
     /**
-     * YENİ: Markdown -> HTML Dönüştürücü
+     * Markdown -> HTML Dönüştürücü
      * OpenAI'ın **kalın** ve - listelerini HTML'e çevirir.
      */
     formatRichText: function (sText: string): string {
         if (!sText) return "";
-
         let sHtml = sText;
-
-        // 1. ÖNCE HTML Karakterlerini Temizle (Güvenlik)
-        // (Opsiyonel ama iyi olur, şimdilik geçebiliriz)
-
-        // 2. Kalın Yazıları Çevir (**text** -> <strong>text</strong>)
         sHtml = sHtml.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-
-        // 3. EN ÖNEMLİSİ: Satır Başlarını <br> yap
-        // \n karakterini <br> etiketine çeviriyoruz
         sHtml = sHtml.replace(/\n/g, "<br>");
-
         return sHtml;
+    },
+
+    /**
+     * Role'e göre ikon döndür (CAP için)
+     */
+    getRoleIcon: function (sRole: string): string {
+        return sRole === "user" ? "sap-icon://employee" : "sap-icon://it-host";
+    },
+
+    /**
+     * Role'e göre isim döndür (CAP için)
+     */
+    getRoleName: function (sRole: string): string {
+        return sRole === "user" ? "Sen" : "GoLive Asistan";
+    },
+
+    /**
+     * Mesaj stili (CAP aiassistant2 için)
+     */
+    getMessageStyle: function (sRole: string): string {
+        return sRole === "user" ? "senderBubble" : "receiverBubble";
+    },
+
+    /**
+     * Avatar ikonu (aiassistant2 için)
+     */
+    getIcon: function (sRole: string): string {
+        return sRole === "user" ? "sap-icon://employee" : "sap-icon://robot";
+    },
+
+    /**
+     * Kullanıcı ismi (aiassistant2 için)
+     */
+    getName: function (sRole: string): string {
+        return sRole === "user" ? "" : "AI Asistan";
     }
 };

@@ -67,6 +67,16 @@
                                                 targetURL: "#Chat-display", // Aşağıdaki inbound ile eşleşir
                                                 icon: "sap-icon://discussion"
                                             }
+                                        },
+                                        {
+                                            id: "aiassistant2",
+                                            tileType: "sap.ushell.ui.tile.StaticTile",
+                                            properties: {
+                                                title: "AI Chat Asistanı",
+                                                subtitle: "Sohbet & Destek",
+                                                targetURL: "#aiassistant2-display", // Aşağıdaki inbound ile eşleşir
+                                                icon: "sap-icon://discussion"
+                                            }
                                         }
                                     ]
                                 }
@@ -110,6 +120,17 @@
                                         applicationType: "SAPUI5",
                                         additionalInformation: "SAPUI5.Component=chat",
                                         url: "./chat"
+                                    }
+                                },
+                                "asistantDisplay": {
+                                    semanticObject: "Chat",
+                                    action: "display",
+                                    title: "AI Chat",
+                                    signature: { parameters: {}, additionalParameters: "allowed" },
+                                    resolutionResult: {
+                                        applicationType: "SAPUI5",
+                                        additionalInformation: "SAPUI5.Component=aiassistant2",
+                                        url: "./aiassistant2"
                                     }
                                 }
                             }

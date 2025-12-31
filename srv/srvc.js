@@ -3,9 +3,11 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const MONGO_URI = "mongodb+srv://admin:jAqXMquHvg2Hp2r4@cluster0.4okvnff.mongodb.net/?appName=Cluster0"
+
 // --- MONGODB BAĞLANTISI ---
-if (process.env.MONGO_URI) {
-    mongoose.connect(process.env.MONGO_URI)
+if (MONGO_URI) {
+    mongoose.connect(MONGO_URI)
         .then(() => console.log('✅ MongoDB Bağlantısı Başarılı! (Production Mode)'))
         .catch(err => console.error('❌ MongoDB Hatası:', err));
 } else {

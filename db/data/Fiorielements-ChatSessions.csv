@@ -1,0 +1,13 @@
+ID;title
+4b8f7c1d-4c1f-4bc0-84a1-8a4a2e2eb001;Fiori Hata Analizi
+9a2bd5f3-07c2-4f0d-8c5c-1c1d33ce0b02;BTP Deployment Sorunu
+c73c1b0f-58d9-4e7d-b4a2-92f5a7c41b03;ABAP Performans Problemi
+7fe8a022-6e45-4cf1-9324-2dc4c5150b04;Entegrasyon Zaman Aşımı Hatası
+f292e4d7-1b6f-4d9f-a94e-78cc3f100b05;SAP UI5 Cache Sorunu
+51cf9e6d-0e5e-4010-bbcc-22bd91a20b06;Yetkilendirme Rolü Eksikliği
+bdcd2e88-2dd0-4e69-9336-41cc7acc9b07;OData Servisi Yanıt Vermiyor
+ea5e1e3f-0c73-42bc-9aaf-bacdd47e8b08;Workflow Trigger Çalışmıyor
+0c3fa27d-6b00-48ce-b406-ea8dd1136b09;Transport Sıralama Sorunu
+e969314c-7f19-4f1d-a092-8829f4fd2b10;SAP Gateway Bağlantı Problemi
+f5f04f03-3f64-4e8b-97f2-9178653fa111;Batch Job Beklenenden Erken Durdu
+90e48f32-6b7a-46cf-bb3a-1abdf8f16112;SAML2 Login Hatası
