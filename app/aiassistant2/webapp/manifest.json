@@ -1,0 +1,136 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "aiassistant2",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.20.0",
+      "toolsId": "614f3c74-5b63-4516-9127-3f9e106898b1"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/service/FiorielementsService/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "aiassistant2-display": {
+          "semanticObject": "aiassistant2",
+          "action": "display",
+          "title": "{{aiassistant2-display.flpTitle}}",
+          "subTitle": "{{aiassistant2-display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.143.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.viz": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "aiassistant2.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "aiassistant2.view",
+        "async": true,
+        "viewPath": "aiassistant2.view"
+      },
+      "routes": [
+        {
+          "name": "Routeaiassistant2",
+          "pattern": ":?query:",
+          "target": [
+            "Targetaiassistant2"
+          ]
+        }
+      ],
+      "targets": {
+        "Targetaiassistant2": {
+          "id": "aiassistant2",
+          "name": "aiassistant2"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "aiassistant2.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "Fiorielements.service"
+  }
+}

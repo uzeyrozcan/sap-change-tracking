@@ -1,0 +1,14 @@
+ID;projectName;date;hours;status
+plan-001;Global Asset Portal;2024-12-10;8.00;Planned
+plan-002;HR Dönüşüm Projesi;2024-12-11;4.00;Draft
+plan-003;LMS Bakım;2024-12-12;2.00;Confirmed
+plan-004;CRM Modül Geliştirme;2024-12-12;6.00;Planned
+plan-005;E-Arşiv Optimizasyon;2024-12-13;3.50;Draft
+plan-006;Mobil Satış Uygulaması;2024-12-13;7.00;Confirmed
+plan-007;SAP UI5 Performans İyileştirme;2024-12-14;5.00;Planned
+plan-008;Entegrasyon İzleme Paneli;2024-12-14;4.50;Draft
+plan-009;E-İmza Servis Yenileme;2024-12-15;2.00;Confirmed
+plan-010;Veri Göçü Hazırlığı;2024-12-15;8.00;Planned
+plan-011;Sistem Log Analizi;2024-12-16;1.50;Draft
+plan-012;Lojistik Modül Destek;2024-12-16;6.50;Confirmed
+plan-013;Kalite Süreç Yapılandırma;2024-12-17;3.00;Planned

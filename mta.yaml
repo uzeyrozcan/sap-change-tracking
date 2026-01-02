@@ -1,6 +1,6 @@
 _schema-version: 3.3.0
 ID: Fiorielements
-description: 'SAP Fiori development trial learning environment'
+description: SAP Fiori development trial learning environment
 version: 1.0.0
 modules:
 - name: Fiorielements-srv
@@ -18,8 +18,8 @@ modules:
       srv-url: ${default-url}
   parameters:
     buildpack: nodejs_buildpack
-    disk-quota: 256M
-    memory: 64M
+    disk-quota: 512M
+    memory: 256M
     no-route: true
   build-parameters:
     builder: npm-ci
@@ -57,9 +57,9 @@ modules:
       app-protocol: ${protocol}
       app-uri: ${default-uri}
   parameters:
-    disk-quota: 128M
+    disk-quota: 512M
     keep-existing-routes: true
-    memory: 64M
+    memory: 256M
   build-parameters:
     builder: custom
     commands: []
@@ -131,9 +131,10 @@ modules:
   build-parameters:
     build-result: dist
     builder: custom
+    ignore: [ 'node_modules/' ]
     commands:
     - npm install
-    - npm run build:cf
+    - npm run build
     supported-platforms: []
 - name: chat
   type: html5
@@ -141,9 +142,10 @@ modules:
   build-parameters:
     build-result: dist
     builder: custom
+    ignore: [ 'node_modules/' ]
     commands:
     - npm install
-    - npm run build:cf
+    - npm run build
     supported-platforms: []
 - name: products
   type: html5
@@ -151,9 +153,10 @@ modules:
   build-parameters:
     build-result: dist
     builder: custom
+    ignore: [ 'node_modules/' ]
     commands:
     - npm install
-    - npm run build:cf
+    - npm run build
     supported-platforms: []
 - name: Fiorielements-app-deployer
   type: com.sap.application.content
@@ -181,6 +184,10 @@ modules:
       - aiassistant.zip
       name: aiassistant
       target-path: app/
+    - artifacts:
+      - aiassistant2.zip
+      name: aiassistant2
+      target-path: app/
 - name: Fiorielements-mtx
   type: nodejs
   path: gen/mtx/sidecar
@@ -200,9 +207,9 @@ modules:
     properties:
       mtx-url: ${default-url}
   parameters:
-    disk-quota: 256M
+    disk-quota: 512M
     instances: 1
-    memory: 64M
+    memory: 256M
     no-route: true
   build-parameters:
     builder: npm-ci
@@ -212,9 +219,21 @@ modules:
   build-parameters:
     build-result: dist
     builder: custom
+    ignore: [ 'node_modules/' ]
     commands:
     - npm install
-    - npm run build:cf
+    - npm run build
+    supported-platforms: []
+- name: aiassistant2
+  type: html5
+  path: app/aiassistant2
+  build-parameters:
+    build-result: dist
+    builder: custom
+    ignore: [ 'node_modules/' ]
+    commands:
+    - npm install
+    - npm run build
     supported-platforms: []
 resources:
 - name: Fiorielements-auth

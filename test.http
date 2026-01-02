@@ -1,0 +1,12 @@
+### Test 1: OpenAI Action Denemesi (Kullanıcı: alice)
+POST http://localhost:4004/service/FiorielementsService/ask
+Authorization: Basic alice:
+Content-Type: application/json
+
+{
+    "question": "Bana SAP UI5'ın ne olduğunu 1 cümleyle anlat."
+}
+
+### Test 2: Şirketleri Listele (Kullanıcı: alice)
+GET http://localhost:4004/service/FiorielementsService/Companies
+Authorization: Basic alice:

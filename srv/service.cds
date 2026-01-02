@@ -1,5 +1,4 @@
 using { Fiorielements as my } from '../db/schema.cds';
-using {sap.changelog as sapChangelog} from '@cap-js/change-tracking';
 
 @path : '/service/FiorielementsService'
 service FiorielementsService
@@ -10,19 +9,77 @@ service FiorielementsService
 
     @readonly
     entity ProductManagers as projection on my.ProductManagers;
-    @readonly entity ProductNumbers as projection on my.ProductNumbers;
-    @readonly entity ProductNames as projection on my.ProductNames;
-    @readonly entity ProductStatuses as projection on my.ProductStatuses;
-    @readonly entity ProductTypes as projection on my.ProductTypes;
+    @readonly 
+    entity ProductNumbers as projection on my.ProductNumbers;
+    @readonly 
+    entity ProductNames as projection on my.ProductNames;
+    @readonly 
+    entity ProductStatuses as projection on my.ProductStatuses;
+    @readonly 
+    entity ProductTypes as projection on my.ProductTypes;
 
-    action ask(question: String) returns { answer: String };
+    // ============================================================================
+    // Chat & AI
+    // ============================================================================
+    action ask(question: String, sessionId: String) returns { 
+        answer: String 
+    };
+
+    @readonly
+    entity Prompts as projection on my.Prompts;
     
+    @readonly
+    entity Assistants as projection on my.Assistants;
+
+    // ============================================================================
+    // Companies, Activities, Plans
+    // ============================================================================
+    
+    entity Companies as projection on my.Companies;
+    
+    @odata.draft.enabled
+    entity Activities as projection on my.Activities;
+    
+    @odata.draft.enabled
+    entity Plans as projection on my.Plans;
+
+    entity ChatSessions as projection on my.ChatSessions;
+    
+    entity ChatMessages as projection on my.ChatMessages;
+
     entity messages as projection on my.messages;
 
-    // --- DÜZELTME BURADA ---
+    // ============================================================================
+    // Business Actions
+    // ============================================================================
+    
+    action createActivity(
+        companyId   : String,
+        hours       : Integer,
+        description : String,
+        date        : String
+    );
+
+    action createPlan(
+        projectName : String,
+        date        : String,
+        hours       : Integer
+    );
+
+    action getActivityReport() returns {
+        summary_text : String;
+        chart_data   : array of {
+            Project : String;
+            Hours   : Integer;
+        };
+    };
+
+    // ============================================================================
+    // ChangeLog
+    // ============================================================================
+    @readonly
     entity ChangeLog as projection on my.ChangeLog {
         *,
-        // 'changes' ilişkisini servis içindeki 'ChangeLogChanges' entity'sine yönlendiriyoruz
         changes : redirected to ChangeLogChanges, 
         virtual appName : String
     };

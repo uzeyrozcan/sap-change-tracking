@@ -1,0 +1,14 @@
+ID;session_ID;role;content;timestamp
+a1f4f4ad-3b1f-4d90-b0c5-3af014e20001;4b8f7c1d-4c1f-4bc0-84a1-8a4a2e2eb001;user;Fiori uygulamasında 404 hatası alıyorum.;2024-12-10T10:00:00Z
+b2b1b452-0e59-4a2c-b1d8-a2397e820002;4b8f7c1d-4c1f-4bc0-84a1-8a4a2e2eb001;assistant;Manifest.json dosyasındaki servis yolunu kontrol ettin mi?;2024-12-10T10:00:05Z
+c3e0f0ce-4536-4c14-bea5-0e332dbb0003;9a2bd5f3-07c2-4f0d-8c5c-1c1d33ce0b02;user;Deploy ederken mta.yaml hatası var.;2024-12-11T14:00:00Z
+d4fa28c1-48b5-4957-98a3-30de59ab0004;9a2bd5f3-07c2-4f0d-8c5c-1c1d33ce0b02;assistant;MTA modüllerinin adlarıyla tanımlı yollar eşleşiyor mu?;2024-12-11T14:00:08Z
+e58f4410-bd41-4a33-86f3-1336a2cd0005;4b8f7c1d-4c1f-4bc0-84a1-8a4a2e2eb001;user;Evet kontrol ettim, yine de aynı hatayı veriyor.;2024-12-10T10:01:10Z
+f684578c-4cd8-443b-b877-e4ce8e0e0006;4b8f7c1d-4c1f-4bc0-84a1-8a4a2e2eb001;assistant;OData servisi aktif mi? /IWFND/MAINT_SERVICE ekranından doğrular mısın?;2024-12-10T10:01:30Z
+0a0a6fce-9210-40db-bb96-7c615d1f0007;c73c1b0f-58d9-4e7d-b4a2-92f5a7c41b03;user;UI5 uygulaması cihazlarda çok yavaş açılıyor.;2024-12-12T09:15:00Z
+1b7b4cea-5aa0-4d70-a5a1-37d3f3710008;c73c1b0f-58d9-4e7d-b4a2-92f5a7c41b03;assistant;Network trace aldın mı? Yükleme süresini etkileyen dosya boyutları olabilir.;2024-12-12T09:15:20Z
+2c890b17-14f5-4f4c-bcd0-72a1b6720009;7fe8a022-6e45-4cf1-9324-2dc4c5150b04;user;Transport paketim QA sistemine düşmemiş.;2024-12-13T11:40:00Z
+3d9f8cc1-5476-4cf0-bd1e-f0c030240010;7fe8a022-6e45-4cf1-9324-2dc4c5150b04;assistant;STMS içinde queue güncellenmiş mi kontrol et.;2024-12-13T11:40:25Z
+4eaf52d6-d962-49f3-a8e4-ee7287020011;9a2bd5f3-07c2-4f0d-8c5c-1c1d33ce0b02;user;Modüller arasında bağımlılık hatası olabilir mi?;2024-12-11T14:01:10Z
+5fb0f8b4-137d-4dae-a3fb-1f8c00ce0012;9a2bd5f3-07c2-4f0d-8c5c-1c1d33ce0b02;assistant;Evet, mta.yaml içindeki requires alanlarını yeniden gözden geçirmeni öneririm.;2024-12-11T14:01:35Z
+607d4b90-8fb0-4a02-9c30-66fd81920013;c73c1b0f-58d9-4e7d-b4a2-92f5a7c41b03;user;Cache temizlenmesine rağmen UI5 uygulaması eski sürümü açıyor.;2024-12-12T09:16:10Z
